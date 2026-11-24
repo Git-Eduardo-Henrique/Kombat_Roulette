@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat Roulette</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="app" id="app">
+
+    <header class="header">
+
+        <div class="logo">
+            <span class="logo-icon">⚔️</span>
+            <div>
+                <h1>COMBAT ROULETTE</h1>
+                <p data-i18n="subtitle">SISTEMA DE SORTEIO DE TORNEIOS</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="pt" title="Português">
+                    🇧🇷
+                </button>
+                <button class="lang-btn" data-lang="en" title="English">
+                    🇺🇸
+                </button>
+            </div>
+
+            <button class="fullscreen-btn" id="fullscreenBtn"
+                data-i18n="fullscreen">
+                ⛶ Tela cheia
+            </button>
+        </div>
+
+    </header>
+
+    <section class="main-content">
+
+        <!-- ÁREA DO SORTEIO -->
+
+        <section class="draw-section">
+
+            <div class="section-label" data-i18n="drawLabel">
+                SORTEIO DE COMBATE
+            </div>
+
+            <div class="winner-area" id="winnerArea">
+
+                <div class="placeholder" id="placeholder">
+                    <span>⚔️</span>
+                    <h2 data-i18n="placeholderTitle">
+                        Quem será o escolhido?
+                    </h2>
+                    <p data-i18n="placeholderText">
+                        Adicione combatentes e comece o sorteio!
+                    </p>
+                </div>
+
+                <div class="winner-display" id="winnerDisplay">
+
+                    <div class="winner-card" id="winnerOne">
+                        <span class="winner-label" data-i18n="fighter">
+                            COMBATENTE
+                        </span>
+                        <h2 id="winnerNameOne">---</h2>
+                    </div>
+
+                    <div class="versus" id="versus">VS</div>
+
+                    <div class="winner-card" id="winnerTwo">
+                        <span class="winner-label" data-i18n="fighter">
+                            COMBATENTE
+                        </span>
+                        <h2 id="winnerNameTwo">---</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="draw-controls">
+
+                <div class="mode-control">
+                    <label data-i18n="modeLabel">Modo de sorteio</label>
+
+                    <div class="mode-buttons">
+
+                        <button class="mode-btn active" data-mode="1"
+                            data-i18n="singleMode">
+                            1 combatente
+                        </button>
+
+                        <button class="mode-btn" data-mode="2"
+                            data-i18n="versusMode">
+                            2 combatentes
+                        </button>
+
+                    </div>
+                </div>
+
+                <button class="draw-btn" id="drawBtn"
+                    data-i18n="drawButton">
+                    ⚔️ SORTEAR
+                </button>
+
+            </div>
+
+            <div class="repeat-control">
+
+                <label class="switch">
+                    <input type="checkbox" id="repeatToggle">
+                    <span class="slider"></span>
+                </label>
+
+                <div>
+                    <strong data-i18n="repeatTitle">
+                        Permitir combatentes repetidos
+                    </strong>
+                    <p data-i18n="repeatDescription">
+                        Desativado: quem já saiu não participa novamente.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PAINEL LATERAL -->
+
+        <aside class="sidebar">
+
+            <section class="panel participants-panel">
+
+                <div class="panel-header">
+                    <h3 data-i18n="fightersTitle">⚔️ Combatentes</h3>
+                    <span class="counter" id="participantCount">0</span>
+                </div>
+
+                <textarea
+                    id="participantInput"
+                    data-i18n-placeholder="inputPlaceholder"
+                    placeholder="Cole ou digite os combatentes aqui..."
+                ></textarea>
+
+                <div class="panel-actions">
+
+                    <button class="add-btn" id="addBtn"
+                        data-i18n="addButton">
+                        + Adicionar lista
+                    </button>
+
+                    <button class="clear-btn" id="clearParticipantsBtn"
+                        data-i18n="clearButton">
+                        Limpar
+                    </button>
+
+                </div>
+
+                <div class="participant-status" id="participantStatus"
+                    data-i18n="emptyParticipants">
+                    Nenhum combatente adicionado.
+                </div>
+
+                <!-- LISTA EXPANSÍVEL -->
+
+                <details class="fighters-list" id="fightersList">
+
+                    <summary>
+                        <span data-i18n="listTitle">
+                            Ver lista de combatentes
+                        </span>
+                        <span class="list-arrow">⌄</span>
+                    </summary>
+
+                    <ul id="fightersListContent"></ul>
+
+                </details>
+
+            </section>
+
+            <!-- HISTÓRICO -->
+
+            <section class="panel history-panel">
+
+                <div class="panel-header">
+                    <h3 data-i18n="historyTitle">📜 Histórico</h3>
+
+                    <button class="clear-history-btn" id="clearHistoryBtn"
+                        data-i18n="clearHistory">
+                        Limpar histórico
+                    </button>
+                </div>
+
+                <div class="history-list" id="historyList">
+                    <p class="empty-history" data-i18n="emptyHistory">
+                        Nenhum sorteio realizado.
+                    </p>
+                </div>
+
+            </section>
+
+        </aside>
+
+    </section>
+
+    <footer>
+        <p>COMBAT ROULETTE • TOURNAMENT DRAW SYSTEM</p>
+    </footer>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
