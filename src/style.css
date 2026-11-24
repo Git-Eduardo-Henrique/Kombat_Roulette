@@ -675,3 +675,517 @@ footer {
     }
 
 }
+
+
+/* ==================================
+   KOMBAT ROULETTE - NEW FEATURES
+================================== */
+
+/* HEADER */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.language-selector {
+    display: flex;
+    gap: 5px;
+    padding: 4px;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 19px;
+    opacity: 0.45;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lang-btn:hover {
+    opacity: 1;
+}
+
+.lang-btn.active {
+    opacity: 1;
+    background: #45151e;
+    border-color: var(--red);
+}
+
+/* TXT IMPORT */
+
+.file-import {
+    margin-top: 9px;
+}
+
+.file-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    padding: 11px;
+    background: #201820;
+    border: 1px dashed #71303b;
+    border-radius: 7px;
+    color: #ff8791;
+    font-size: 11px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.file-btn:hover {
+    background: #35151e;
+    border-color: var(--red);
+}
+
+/* EXPANDABLE FIGHTER LIST */
+
+.fighters-list {
+    margin-top: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #0b0b10;
+    overflow: hidden;
+}
+
+.fighters-list[hidden] {
+    display: none;
+}
+
+.fighters-list summary {
+    padding: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    color: #ff8791;
+    font-size: 11px;
+    font-weight: 700;
+    user-select: none;
+}
+
+.fighters-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.fighters-list summary:hover {
+    background: #1b1117;
+}
+
+.list-arrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.fighters-list[open] .list-arrow {
+    transform: rotate(180deg);
+}
+
+#fightersListContent {
+    list-style: none;
+    padding: 0 10px 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+#fightersListContent li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 5px;
+    border-bottom: 1px solid #24212a;
+    color: var(--text);
+    font-size: 11px;
+}
+
+#fightersListContent li:last-child {
+    border-bottom: none;
+}
+
+.fighter-number {
+    color: var(--red);
+    font-weight: 900;
+    min-width: 25px;
+}
+
+.fighter-name {
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+/* DELETE FIGHTER BUTTON */
+
+.delete-fighter-btn {
+    background: transparent;
+    color: #77717a;
+    border-radius: 5px;
+    padding: 6px 8px;
+    font-size: 15px;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.delete-fighter-btn:hover {
+    color: #ffffff;
+    background: #a81020;
+}
+
+.delete-fighter-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.footer p {
+    color: #55555f;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 16px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--red);
+}
+
+.footer-links a span {
+    margin-right: 4px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
+
+    .header {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+}
+
+
+/* ==================================
+   KOMBAT ROULETTE - THEME SYSTEM
+================================== */
+
+/* DEFAULT THEME: RED */
+
+body {
+    --red: #e32636;
+    --red-dark: #a81020;
+    --theme-glow: #321018;
+    --theme-card: #38121b;
+}
+
+/* ORANGE */
+
+body[data-theme="orange"] {
+    --red: #f07825;
+    --red-dark: #b94b12;
+    --theme-glow: #351d0e;
+    --theme-card: #40200f;
+}
+
+/* GREEN */
+
+body[data-theme="green"] {
+    --red: #25c477;
+    --red-dark: #12804b;
+    --theme-glow: #103322;
+    --theme-card: #12402a;
+}
+
+/* LIGHT BLUE */
+
+body[data-theme="lightblue"] {
+    --red: #36b9ed;
+    --red-dark: #167cae;
+    --theme-glow: #102c3b;
+    --theme-card: #12374b;
+}
+
+/* PURPLE */
+
+body[data-theme="purple"] {
+    --red: #a66bfa;
+    --red-dark: #7035c4;
+    --theme-glow: #28183e;
+    --theme-card: #321b4b;
+}
+
+/* YELLOW */
+
+body[data-theme="yellow"] {
+    --red: #e9c52e;
+    --red-dark: #a68a14;
+    --theme-glow: #332d12;
+    --theme-card: #403714;
+}
+
+/* APPLY THE SELECTED COLOR */
+
+.draw-btn {
+    background: linear-gradient(
+        135deg,
+        var(--red),
+        var(--red-dark)
+    );
+}
+
+.add-btn {
+    background: var(--red-dark);
+}
+
+.add-btn:hover {
+    background: var(--red);
+}
+
+.winner-area {
+    background: radial-gradient(
+        circle at center,
+        var(--theme-glow) 0%,
+        #171016 55%,
+        #111116 100%
+    );
+
+    border-color: var(--red-dark);
+}
+
+.winner-card {
+    background: linear-gradient(
+        135deg,
+        var(--theme-card),
+        #1c1017
+    );
+
+    border-color: var(--red);
+}
+
+.winner-label {
+    color: var(--red);
+}
+
+.versus {
+    color: var(--red);
+    text-shadow: 0 0 15px var(--red);
+}
+
+.mode-btn.active {
+    background: var(--red);
+}
+
+.counter {
+    background: var(--theme-glow);
+    color: var(--red);
+}
+
+.lang-btn.active {
+    border-color: var(--red);
+}
+
+.file-btn:hover {
+    border-color: var(--red);
+}
+
+.delete-fighter-btn:hover {
+    background: var(--red-dark);
+}
+
+/* ==================================
+   THEME SELECTOR
+================================== */
+
+.theme-selector {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 9px;
+}
+
+.theme-icon {
+    font-size: 16px;
+}
+
+.theme-selector select {
+    background: transparent;
+    color: var(--text);
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.theme-selector select option {
+    background: #17171f;
+    color: white;
+}
+
+/* ==================================
+   FLAG ICONS
+================================== */
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 35px;
+    padding: 5px;
+}
+
+.lang-btn img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+/* ==================================
+   FULLSCREEN LAYOUT
+================================== */
+
+.app:fullscreen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 25px 4vw;
+}
+
+/* Main content becomes vertical */
+
+.app:fullscreen .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
+}
+
+/* Draw area centered at the top */
+
+.app:fullscreen .draw-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Large but controlled winner area */
+
+.app:fullscreen .winner-area {
+    min-height: 30vh;
+}
+
+/* Sidebar goes below the draw */
+
+.app:fullscreen .sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 1100px;
+    gap: 20px;
+}
+
+/* History and fighter list */
+
+.app:fullscreen .history-list {
+    max-height: 25vh;
+}
+
+.app:fullscreen .fighters-list #fightersListContent {
+    max-height: 20vh;
+}
+
+/* Footer remains at the bottom */
+
+.app:fullscreen .footer {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto auto 0;
+}
+
+/* Smaller fullscreen windows */
+
+@media (max-width: 850px) {
+
+    .app:fullscreen .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .app:fullscreen .winner-area {
+        min-height: 280px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .header-actions {
+        flex-wrap: wrap;
+    }
+
+    .theme-selector {
+        flex: 1;
+    }
+
+    .app:fullscreen {
+        padding: 15px;
+    }
+
+    .app:fullscreen .draw-section,
+    .app:fullscreen .sidebar {
+        width: 100%;
+    }
+
+}

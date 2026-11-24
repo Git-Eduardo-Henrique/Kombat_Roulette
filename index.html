@@ -1,12 +1,14 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combat Roulette</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Kombat Roulette</title>
+
+    <link rel="stylesheet" href="src/style.css">
 </head>
+
 <body>
 
 <main class="app" id="app">
@@ -15,49 +17,79 @@
 
         <div class="logo">
             <span class="logo-icon">⚔️</span>
+
             <div>
-                <h1>COMBAT ROULETTE</h1>
-                <p data-i18n="subtitle">SISTEMA DE SORTEIO DE TORNEIOS</p>
+                <h1>KOMBAT ROULETTE</h1>
+                <p data-i18n="subtitle">TOURNAMENT DRAW SYSTEM</p>
             </div>
         </div>
 
         <div class="header-actions">
-            <div class="language-selector">
-                <button class="lang-btn active" data-lang="pt" title="Português">
-                    🇧🇷
-                </button>
-                <button class="lang-btn" data-lang="en" title="English">
-                    🇺🇸
-                </button>
-            </div>
 
-            <button class="fullscreen-btn" id="fullscreenBtn"
-                data-i18n="fullscreen">
-                ⛶ Tela cheia
-            </button>
-        </div>
+    <!-- THEME SELECTOR -->
+    <div class="theme-selector">
+        <span class="theme-icon">🎨</span>
+
+        <select id="themeSelect" title="Theme">
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="green">Green</option>
+            <option value="lightblue">Light Blue</option>
+            <option value="purple">Purple</option>
+            <option value="yellow">Yellow</option>
+        </select>
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="language-selector">
+
+        <button class="lang-btn active"
+            data-lang="en"
+            title="English">
+
+            <img src="src/images/icons/usa.png" alt="English">
+
+        </button>
+
+        <button class="lang-btn"
+            data-lang="pt"
+            title="Português">
+
+            <img src="src/images/icons/br.png" alt="Português">
+
+        </button>
+
+    </div>
+
+    <button class="fullscreen-btn" id="fullscreenBtn">
+        ⛶ Fullscreen
+    </button>
+
+</div>
 
     </header>
 
     <section class="main-content">
 
-        <!-- ÁREA DO SORTEIO -->
+        <!-- DRAW AREA -->
 
         <section class="draw-section">
 
             <div class="section-label" data-i18n="drawLabel">
-                SORTEIO DE COMBATE
+                KOMBAT DRAW
             </div>
 
             <div class="winner-area" id="winnerArea">
 
                 <div class="placeholder" id="placeholder">
                     <span>⚔️</span>
+
                     <h2 data-i18n="placeholderTitle">
-                        Quem será o escolhido?
+                        Who will be chosen?
                     </h2>
+
                     <p data-i18n="placeholderText">
-                        Adicione combatentes e comece o sorteio!
+                        Add fighters and start the draw!
                     </p>
                 </div>
 
@@ -65,8 +97,9 @@
 
                     <div class="winner-card" id="winnerOne">
                         <span class="winner-label" data-i18n="fighter">
-                            COMBATENTE
+                            FIGHTER
                         </span>
+
                         <h2 id="winnerNameOne">---</h2>
                     </div>
 
@@ -74,8 +107,9 @@
 
                     <div class="winner-card" id="winnerTwo">
                         <span class="winner-label" data-i18n="fighter">
-                            COMBATENTE
+                            FIGHTER
                         </span>
+
                         <h2 id="winnerNameTwo">---</h2>
                     </div>
 
@@ -86,26 +120,27 @@
             <div class="draw-controls">
 
                 <div class="mode-control">
-                    <label data-i18n="modeLabel">Modo de sorteio</label>
+
+                    <label data-i18n="modeLabel">Draw mode</label>
 
                     <div class="mode-buttons">
 
-                        <button class="mode-btn active" data-mode="1"
+                        <button class="mode-btn" data-mode="1"
                             data-i18n="singleMode">
-                            1 combatente
+                            1 Fighter
                         </button>
 
-                        <button class="mode-btn" data-mode="2"
+                        <button class="mode-btn active" data-mode="2"
                             data-i18n="versusMode">
-                            2 combatentes
+                            2 Fighters
                         </button>
 
                     </div>
+
                 </div>
 
-                <button class="draw-btn" id="drawBtn"
-                    data-i18n="drawButton">
-                    ⚔️ SORTEAR
+                <button class="draw-btn" id="drawBtn">
+                    ⚔️ DRAW
                 </button>
 
             </div>
@@ -119,10 +154,11 @@
 
                 <div>
                     <strong data-i18n="repeatTitle">
-                        Permitir combatentes repetidos
+                        Allow repeated fighters
                     </strong>
+
                     <p data-i18n="repeatDescription">
-                        Desativado: quem já saiu não participa novamente.
+                        Disabled: drawn fighters cannot be selected again.
                     </p>
                 </div>
 
@@ -130,51 +166,78 @@
 
         </section>
 
-        <!-- PAINEL LATERAL -->
+        <!-- SIDEBAR -->
 
         <aside class="sidebar">
+
+            <!-- FIGHTERS -->
 
             <section class="panel participants-panel">
 
                 <div class="panel-header">
-                    <h3 data-i18n="fightersTitle">⚔️ Combatentes</h3>
+
+                    <h3 data-i18n="fightersTitle">
+                        ⚔️ Fighters
+                    </h3>
+
                     <span class="counter" id="participantCount">0</span>
+
                 </div>
 
                 <textarea
                     id="participantInput"
                     data-i18n-placeholder="inputPlaceholder"
-                    placeholder="Cole ou digite os combatentes aqui..."
+                    placeholder="Paste or type fighters here..."
                 ></textarea>
 
                 <div class="panel-actions">
 
-                    <button class="add-btn" id="addBtn"
-                        data-i18n="addButton">
-                        + Adicionar lista
+                    <button class="add-btn" id="addBtn">
+                        + Add list
                     </button>
 
-                    <button class="clear-btn" id="clearParticipantsBtn"
-                        data-i18n="clearButton">
-                        Limpar
+                    <button class="clear-btn" id="clearParticipantsBtn">
+                        Clear
                     </button>
 
                 </div>
 
-                <div class="participant-status" id="participantStatus"
-                    data-i18n="emptyParticipants">
-                    Nenhum combatente adicionado.
+                <!-- TXT IMPORT -->
+
+                <div class="file-import">
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".txt,text/plain"
+                        hidden
+                    >
+
+                    <button class="file-btn" id="fileBtn">
+                        <span>📄</span>
+                        <span data-i18n="importFile">
+                            Import TXT file
+                        </span>
+                    </button>
+
                 </div>
 
-                <!-- LISTA EXPANSÍVEL -->
+                <div class="participant-status" id="participantStatus">
+                    No fighters added.
+                </div>
 
-                <details class="fighters-list" id="fightersList">
+                <!-- EXPANDABLE FIGHTER LIST -->
+
+                <details class="fighters-list" id="fightersList" hidden>
 
                     <summary>
+
                         <span data-i18n="listTitle">
-                            Ver lista de combatentes
+                            View fighter list
                         </span>
+
                         <span class="list-arrow">⌄</span>
+
                     </summary>
 
                     <ul id="fightersListContent"></ul>
@@ -183,23 +246,28 @@
 
             </section>
 
-            <!-- HISTÓRICO -->
+            <!-- HISTORY -->
 
             <section class="panel history-panel">
 
                 <div class="panel-header">
-                    <h3 data-i18n="historyTitle">📜 Histórico</h3>
 
-                    <button class="clear-history-btn" id="clearHistoryBtn"
-                        data-i18n="clearHistory">
-                        Limpar histórico
+                    <h3 data-i18n="historyTitle">
+                        📜 History
+                    </h3>
+
+                    <button class="clear-history-btn" id="clearHistoryBtn">
+                        Clear history
                     </button>
+
                 </div>
 
                 <div class="history-list" id="historyList">
-                    <p class="empty-history" data-i18n="emptyHistory">
-                        Nenhum sorteio realizado.
+
+                    <p class="empty-history">
+                        No draws performed.
                     </p>
+
                 </div>
 
             </section>
@@ -208,13 +276,39 @@
 
     </section>
 
-    <footer>
-        <p>COMBAT ROULETTE • TOURNAMENT DRAW SYSTEM</p>
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>KOMBAT ROULETTE • TOURNAMENT DRAW SYSTEM</p>
+
+        <div class="footer-links">
+
+            <a
+                href="https://www.youtube.com/@3DITZ_777"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="YouTube - 3DITZ-777"
+            >
+                <span>▶</span> 3DITZ-777
+            </a>
+
+            <a
+                href="https://github.com/Git-Eduardo-Henrique/Kombat_Roulette"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub - Kombat Roulette"
+            >
+                <span>⌘</span> GitHub
+            </a>
+
+        </div>
+
     </footer>
 
 </main>
 
-<script src="script.js"></script>
+<script src="src/script.js"></script>
 
 </body>
 </html>

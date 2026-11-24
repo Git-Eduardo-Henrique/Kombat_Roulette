@@ -1,9 +1,9 @@
 
 // ======================================
-// COMBAT ROULETTE
+// KOMBAT ROULETTE
 // ======================================
 
-// ELEMENTOS
+// ELEMENTS
 const participantInput = document.getElementById("participantInput");
 const participantCount = document.getElementById("participantCount");
 const participantStatus = document.getElementById("participantStatus");
@@ -32,13 +32,81 @@ const historyList = document.getElementById("historyList");
 const fightersList = document.getElementById("fightersList");
 const fightersListContent = document.getElementById("fightersListContent");
 
+const fileInput = document.getElementById("fileInput");
+const fileBtn = document.getElementById("fileBtn");
+
 const app = document.getElementById("app");
 
+const themeSelect = document.getElementById("themeSelect");
+
 // ======================================
-// TRADUÇÕES
+// TRANSLATIONS
 // ======================================
 
 const translations = {
+
+    en: {
+        subtitle: "TOURNAMENT DRAW SYSTEM",
+        fullscreen: "⛶ Fullscreen",
+        exitFullscreen: "✕ Exit fullscreen",
+
+        drawLabel: "KOMBAT DRAW",
+        placeholderTitle: "Who will be chosen?",
+        placeholderText: "Add fighters and start the draw!",
+        fighter: "FIGHTER",
+
+        modeLabel: "Draw mode",
+        singleMode: "1 Fighter",
+        versusMode: "2 Fighters",
+        drawButton: "⚔️ DRAW",
+        drawing: "⏳ DRAWING...",
+        insufficient: "NOT ENOUGH FIGHTERS",
+
+        repeatTitle: "Allow repeated fighters",
+        repeatDescription: "Disabled: drawn fighters cannot be selected again.",
+
+        fightersTitle: "⚔️ Fighters",
+        inputPlaceholder: "Paste or type fighters here...\n\nExample:\nGoku\nSuperman\nBatman\nSpider-Man",
+
+        addButton: "+ Add list",
+        clearButton: "Clear",
+
+        importFile: "Import TXT file",
+
+        emptyParticipants: "No fighters added.",
+        participantStatus: "{total} fighter(s) registered | {available} available",
+
+        listTitle: "View fighter list",
+        listEmpty: "No fighters registered.",
+
+        deleteTitle: "Remove fighter",
+
+        historyTitle: "📜 History",
+        clearHistory: "Clear history",
+        emptyHistory: "No draws performed.",
+
+        confirmParticipants: "Are you sure you want to remove all fighters?",
+        confirmHistory: "Are you sure you want to clear the entire draw history?",
+        confirmDelete: "Remove this fighter from the list?",
+
+        inputError: "Paste or type the fighters first!",
+        invalidError: "No valid fighters found!",
+        insufficientError: "Not enough fighters available!",
+        fullscreenError: "Unable to activate fullscreen.",
+        fileError: "Unable to read this file.",
+        emptyFileError: "The selected file contains no valid fighters.",
+        invalidFileError: "Please select a valid TXT file.",
+
+        drawNumber: "DRAW",
+        drawnAt: "Drawn at",
+        themeLabel: "Theme",
+        themeRed: "Red",
+        themeOrange: "Orange",
+        themeGreen: "Green",
+        themeLightblue: "Light Blue",
+        themePurple: "Purple",
+        themeYellow: "Yellow",
+    },
 
     pt: {
         subtitle: "SISTEMA DE SORTEIO DE TORNEIOS",
@@ -62,13 +130,19 @@ const translations = {
 
         fightersTitle: "⚔️ Combatentes",
         inputPlaceholder: "Cole ou digite os combatentes aqui...\n\nExemplo:\nGoku\nSuperman\nBatman\nHomem-Aranha",
+
         addButton: "+ Adicionar lista",
         clearButton: "Limpar",
+
+        importFile: "Importar arquivo TXT",
+
         emptyParticipants: "Nenhum combatente adicionado.",
         participantStatus: "{total} combatente(s) cadastrado(s) | {available} disponível(is)",
 
         listTitle: "Ver lista de combatentes",
         listEmpty: "Nenhum combatente cadastrado.",
+
+        deleteTitle: "Remover combatente",
 
         historyTitle: "📜 Histórico",
         clearHistory: "Limpar histórico",
@@ -76,73 +150,56 @@ const translations = {
 
         confirmParticipants: "Deseja realmente apagar todos os combatentes?",
         confirmHistory: "Deseja apagar todo o histórico de sorteios?",
+        confirmDelete: "Remover este combatente da lista?",
 
         inputError: "Cole ou digite os combatentes primeiro!",
         invalidError: "Nenhum combatente válido encontrado!",
         insufficientError: "Não existem combatentes suficientes!",
         fullscreenError: "Não foi possível ativar a tela cheia.",
+        fileError: "Não foi possível ler este arquivo.",
+        emptyFileError: "O arquivo selecionado não contém combatentes válidos.",
+        invalidFileError: "Selecione um arquivo TXT válido.",
 
         drawNumber: "SORTEIO",
-        drawnAt: "Realizado às"
-    },
-
-    en: {
-        subtitle: "TOURNAMENT DRAW SYSTEM",
-        fullscreen: "⛶ Fullscreen",
-        exitFullscreen: "✕ Exit fullscreen",
-
-        drawLabel: "COMBAT DRAW",
-        placeholderTitle: "Who will be chosen?",
-        placeholderText: "Add fighters and start the draw!",
-        fighter: "FIGHTER",
-
-        modeLabel: "Draw mode",
-        singleMode: "1 fighter",
-        versusMode: "2 fighters",
-        drawButton: "⚔️ DRAW",
-        drawing: "⏳ DRAWING...",
-        insufficient: "NOT ENOUGH FIGHTERS",
-
-        repeatTitle: "Allow repeated fighters",
-        repeatDescription: "Disabled: drawn fighters cannot be selected again.",
-
-        fightersTitle: "⚔️ Fighters",
-        inputPlaceholder: "Paste or type fighters here...\n\nExample:\nGoku\nSuperman\nBatman\nSpider-Man",
-        addButton: "+ Add list",
-        clearButton: "Clear",
-        emptyParticipants: "No fighters added.",
-        participantStatus: "{total} fighter(s) registered | {available} available",
-
-        listTitle: "View fighter list",
-        listEmpty: "No fighters registered.",
-
-        historyTitle: "📜 History",
-        clearHistory: "Clear history",
-        emptyHistory: "No draws performed.",
-
-        confirmParticipants: "Are you sure you want to remove all fighters?",
-        confirmHistory: "Are you sure you want to clear the entire draw history?",
-
-        inputError: "Paste or type the fighters first!",
-        invalidError: "No valid fighters found!",
-        insufficientError: "Not enough fighters available!",
-        fullscreenError: "Unable to activate fullscreen.",
-
-        drawNumber: "DRAW",
-        drawnAt: "Drawn at"
+        drawnAt: "Realizado às",
+        themeLabel: "Tema",
+        themeRed: "Vermelho",
+        themeOrange: "Laranja",
+        themeGreen: "Verde",
+        themeLightblue: "Azul claro",
+        themePurple: "Roxo",
+        themeYellow: "Amarelo",
     }
 
 };
 
-let currentLanguage = "pt";
+// ======================================
+// VARIABLES
+// ======================================
 
-// Função de tradução
+// English is the default language
+let currentLanguage = "en";
+
+// Default draw mode: 2 fighters
+let drawMode = 2;
+
+let participants = [];
+let drawnParticipants = [];
+let history = [];
+
+let isDrawing = false;
+let drawTimer = null;
+
+// ======================================
+// TRANSLATION FUNCTION
+// ======================================
+
 function t(key) {
     return translations[currentLanguage][key] || key;
 }
 
 // ======================================
-// TROCAR IDIOMA
+// LANGUAGE SELECTION
 // ======================================
 
 document.querySelectorAll(".lang-btn").forEach(button => {
@@ -161,6 +218,35 @@ document.querySelectorAll(".lang-btn").forEach(button => {
         updateLanguage();
 
     });
+
+});
+
+// ======================================
+// THEME SYSTEM
+// ======================================
+
+function setTheme(theme) {
+
+    const validThemes = [
+        "red",
+        "orange",
+        "green",
+        "lightblue",
+        "purple",
+        "yellow"
+    ];
+
+    if (!validThemes.includes(theme)) return;
+
+    document.body.dataset.theme = theme;
+
+    themeSelect.value = theme;
+
+}
+
+themeSelect.addEventListener("change", () => {
+
+    setTheme(themeSelect.value);
 
 });
 
@@ -191,21 +277,27 @@ function updateLanguage() {
         ? t("exitFullscreen")
         : t("fullscreen");
 
+    // Update theme selector translations
+
+    const themeNames = {
+        red: "themeRed",
+        orange: "themeOrange",
+        green: "themeGreen",
+        lightblue: "themeLightblue",
+        purple: "themePurple",
+        yellow: "themeYellow"
+    };
+
+    themeSelect.querySelectorAll("option").forEach(option => {
+
+        option.textContent = t(themeNames[option.value]);
+
+});
+
 }
 
 // ======================================
-// VARIÁVEIS
-// ======================================
-
-let participants = [];
-let drawnParticipants = [];
-let history = [];
-
-let drawMode = 1;
-let isDrawing = false;
-
-// ======================================
-// PARTICIPANTES DISPONÍVEIS
+// AVAILABLE FIGHTERS
 // ======================================
 
 function getAvailableParticipants() {
@@ -221,7 +313,7 @@ function getAvailableParticipants() {
 }
 
 // ======================================
-// CONTADOR E STATUS
+// UPDATE COUNTER
 // ======================================
 
 function updateParticipantCount() {
@@ -238,8 +330,8 @@ function updateParticipantCount() {
 
         participantStatus.textContent =
             t("participantStatus")
-            .replace("{total}", participants.length)
-            .replace("{available}", available);
+                .replace("{total}", participants.length)
+                .replace("{available}", available);
 
     }
 
@@ -248,7 +340,7 @@ function updateParticipantCount() {
 }
 
 // ======================================
-// ATUALIZAR BOTÃO
+// UPDATE DRAW BUTTON
 // ======================================
 
 function updateDrawButton() {
@@ -273,47 +365,45 @@ function updateDrawButton() {
 
     }
 
+    addBtn.disabled = isDrawing;
+    clearParticipantsBtn.disabled = isDrawing;
+    fileBtn.disabled = isDrawing;
+
 }
 
 // ======================================
-// LISTA EXPANSÍVEL DE COMBATENTES
+// ADD FIGHTERS
 // ======================================
 
-function renderFightersList() {
+function addFighters(text) {
 
-    fightersListContent.innerHTML = "";
+    const newParticipants = text
+        .split(/\r?\n/)
+        .map(name => name.trim())
+        .filter(name => name.length > 0);
 
-    if (participants.length === 0) {
-
-        const li = document.createElement("li");
-        li.textContent = t("listEmpty");
-
-        fightersListContent.appendChild(li);
-
-        return;
+    if (newParticipants.length === 0) {
+        alert(t("invalidError"));
+        return false;
     }
 
-    participants.forEach((fighter, index) => {
+    participants.push(...newParticipants);
 
-        const li = document.createElement("li");
+    // Reset the drawn fighters for a new participant list
+    drawnParticipants = [];
 
-        const number = document.createElement("span");
-        number.className = "fighter-number";
-        number.textContent = `#${index + 1}`;
+    updateParticipantCount();
+    renderFightersList();
 
-        const name = document.createElement("span");
-        name.textContent = fighter;
+    // Automatically open the list after adding
+    fightersList.open = true;
 
-        li.append(number, name);
-
-        fightersListContent.appendChild(li);
-
-    });
+    return true;
 
 }
 
 // ======================================
-// ADICIONAR COMBATENTES
+// ADD LIST BY TEXT
 // ======================================
 
 addBtn.addEventListener("click", () => {
@@ -325,37 +415,155 @@ addBtn.addEventListener("click", () => {
         return;
     }
 
-    const newParticipants = text
-        .split(/\r?\n/)
-        .map(name => name.trim())
-        .filter(name => name.length > 0);
-
-    if (newParticipants.length === 0) {
-        alert(t("invalidError"));
-        return;
+    if (addFighters(text)) {
+        participantInput.value = "";
     }
-
-    participants.push(...newParticipants);
-
-    participantInput.value = "";
-
-    drawnParticipants = [];
-
-    updateParticipantCount();
-    renderFightersList();
-
-    // Abre a lista automaticamente após adicionar
-    fightersList.open = true;
 
 });
 
 // ======================================
-// LIMPAR COMBATENTES
+// IMPORT TXT FILE
+// ======================================
+
+fileBtn.addEventListener("click", () => {
+
+    if (isDrawing) return;
+
+    fileInput.click();
+
+});
+
+fileInput.addEventListener("change", async () => {
+
+    const file = fileInput.files[0];
+
+    if (!file) return;
+
+    // Only accept TXT files
+    if (!file.name.toLowerCase().endsWith(".txt")) {
+
+        alert(t("invalidFileError"));
+        fileInput.value = "";
+        return;
+
+    }
+
+    try {
+
+        const text = await file.text();
+
+        if (!text.trim()) {
+
+            alert(t("emptyFileError"));
+            return;
+
+        }
+
+        const success = addFighters(text);
+
+        if (success) {
+            participantInput.value = "";
+        }
+
+    } catch (error) {
+
+        console.error("File import error:", error);
+        alert(t("fileError"));
+
+    } finally {
+
+        // Allows selecting the same file again
+        fileInput.value = "";
+
+    }
+
+});
+
+// ======================================
+// RENDER FIGHTER LIST
+// ======================================
+
+function renderFightersList() {
+
+    fightersListContent.innerHTML = "";
+
+    fightersList.hidden = participants.length === 0;
+
+    if (participants.length === 0) return;
+
+    participants.forEach((fighter, index) => {
+
+        const li = document.createElement("li");
+
+        const number = document.createElement("span");
+        number.className = "fighter-number";
+        number.textContent = `#${index + 1}`;
+
+        const name = document.createElement("span");
+        name.className = "fighter-name";
+        name.textContent = fighter;
+
+        // Individual delete button
+        const deleteButton = document.createElement("button");
+
+        deleteButton.className = "delete-fighter-btn";
+        deleteButton.textContent = "🗑️";
+        deleteButton.title = t("deleteTitle");
+        deleteButton.setAttribute("aria-label", t("deleteTitle"));
+
+        deleteButton.disabled = isDrawing;
+
+        deleteButton.addEventListener("click", () => {
+            deleteFighter(index);
+        });
+
+        li.append(number, name, deleteButton);
+
+        fightersListContent.appendChild(li);
+
+    });
+
+}
+
+// ======================================
+// DELETE INDIVIDUAL FIGHTER
+// ======================================
+
+function deleteFighter(index) {
+
+    if (isDrawing) return;
+
+    if (!confirm(t("confirmDelete"))) return;
+
+    const removedFighter = participants[index];
+
+    if (removedFighter === undefined) return;
+
+    // Remove only the selected entry
+    participants.splice(index, 1);
+
+    // Remove the fighter from the drawn list
+    // if they had already been selected
+    if (!participants.includes(removedFighter)) {
+
+        drawnParticipants = drawnParticipants.filter(
+            name => name !== removedFighter
+        );
+
+    }
+
+    updateParticipantCount();
+    renderFightersList();
+
+}
+
+// ======================================
+// CLEAR ALL FIGHTERS
 // ======================================
 
 clearParticipantsBtn.addEventListener("click", () => {
 
-    if (participants.length === 0) return;
+    if (participants.length === 0 || isDrawing) return;
 
     if (!confirm(t("confirmParticipants"))) return;
 
@@ -376,7 +584,7 @@ clearParticipantsBtn.addEventListener("click", () => {
 });
 
 // ======================================
-// MODO DE SORTEIO
+// DRAW MODE
 // ======================================
 
 document.querySelectorAll(".mode-btn").forEach(button => {
@@ -401,7 +609,7 @@ document.querySelectorAll(".mode-btn").forEach(button => {
 });
 
 // ======================================
-// LAYOUT DOS RESULTADOS
+// WINNER LAYOUT
 // ======================================
 
 function updateWinnerLayout() {
@@ -421,13 +629,16 @@ function updateWinnerLayout() {
 }
 
 // ======================================
-// SORTEIO ALEATÓRIO
+// RANDOM FIGHTER SELECTION
 // ======================================
 
 function getRandomParticipants(amount) {
 
-    const shuffled = [...getAvailableParticipants()];
+    const available = getAvailableParticipants();
 
+    const shuffled = [...available];
+
+    // Fisher-Yates shuffle
     for (let i = shuffled.length - 1; i > 0; i--) {
 
         const j = Math.floor(Math.random() * (i + 1));
@@ -442,7 +653,7 @@ function getRandomParticipants(amount) {
 }
 
 // ======================================
-// REALIZAR SORTEIO
+// PERFORM DRAW
 // ======================================
 
 drawBtn.addEventListener("click", () => {
@@ -452,19 +663,23 @@ drawBtn.addEventListener("click", () => {
     const available = getAvailableParticipants();
 
     if (available.length < drawMode) {
+
         alert(t("insufficientError"));
         return;
+
     }
 
     isDrawing = true;
 
     updateDrawButton();
+    renderFightersList();
 
     placeholder.style.display = "none";
     winnerDisplay.classList.add("show");
 
     updateWinnerLayout();
 
+    // Random name animation
     const animation = setInterval(() => {
 
         const temporary = getRandomParticipants(drawMode);
@@ -477,22 +692,28 @@ drawBtn.addEventListener("click", () => {
 
     }, 100);
 
-    setTimeout(() => {
+    drawTimer = setTimeout(() => {
 
         clearInterval(animation);
+        drawTimer = null;
 
         const winners = getRandomParticipants(drawMode);
 
+        // Final result
         winnerNameOne.textContent = winners[0];
 
         if (drawMode === 2) {
             winnerNameTwo.textContent = winners[1];
         }
 
+        // Register drawn fighters
         if (!repeatToggle.checked) {
+
             drawnParticipants.push(...winners);
+
         }
 
+        // Reveal animation
         winnerOne.classList.remove("animate");
         winnerTwo.classList.remove("animate");
 
@@ -509,13 +730,14 @@ drawBtn.addEventListener("click", () => {
         isDrawing = false;
 
         updateParticipantCount();
+        renderFightersList();
 
     }, 2200);
 
 });
 
 // ======================================
-// HISTÓRICO
+// DRAW HISTORY
 // ======================================
 
 function addToHistory(winners) {
@@ -540,7 +762,7 @@ function addToHistory(winners) {
 }
 
 // ======================================
-// EXIBIR HISTÓRICO
+// RENDER HISTORY
 // ======================================
 
 function renderHistory() {
@@ -550,12 +772,14 @@ function renderHistory() {
     if (history.length === 0) {
 
         const empty = document.createElement("p");
+
         empty.className = "empty-history";
         empty.textContent = t("emptyHistory");
 
         historyList.appendChild(empty);
 
         return;
+
     }
 
     history.forEach((item, index) => {
@@ -565,15 +789,18 @@ function renderHistory() {
 
         const number = document.createElement("div");
         number.className = "number";
+
         number.textContent =
             `${t("drawNumber")} #${history.length - index}`;
 
         const names = document.createElement("div");
         names.className = "names";
+
         names.textContent = item.winners.join(" VS ");
 
         const time = document.createElement("div");
         time.className = "time";
+
         time.textContent = `${t("drawnAt")} ${item.time}`;
 
         historyItem.append(number, names, time);
@@ -585,7 +812,7 @@ function renderHistory() {
 }
 
 // ======================================
-// LIMPAR HISTÓRICO
+// CLEAR HISTORY
 // ======================================
 
 clearHistoryBtn.addEventListener("click", () => {
@@ -601,7 +828,7 @@ clearHistoryBtn.addEventListener("click", () => {
 });
 
 // ======================================
-// REPETIÇÃO DE COMBATENTES
+// REPEATED FIGHTERS
 // ======================================
 
 repeatToggle.addEventListener("change", () => {
@@ -611,7 +838,7 @@ repeatToggle.addEventListener("change", () => {
 });
 
 // ======================================
-// TELA CHEIA
+// FULLSCREEN
 // ======================================
 
 fullscreenBtn.addEventListener("click", async () => {
@@ -645,10 +872,39 @@ document.addEventListener("fullscreenchange", () => {
 });
 
 // ======================================
-// INICIALIZAÇÃO
+// INITIALIZATION
 // ======================================
 
+// Set English as default
+currentLanguage = "en";
+
+// Default theme: RED
+setTheme("red");
+
+document.documentElement.lang = "en";
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+
+    button.classList.toggle(
+        "active",
+        button.dataset.lang === "en"
+    );
+
+});
+
+// Set 2 fighters as default
+drawMode = 2;
+
+document.querySelectorAll(".mode-btn").forEach(button => {
+
+    button.classList.toggle(
+        "active",
+        Number(button.dataset.mode) === 2
+    );
+
+});
+
 updateWinnerLayout();
-updateParticipantCount();
+updateLanguage();
 renderHistory();
 renderFightersList();
