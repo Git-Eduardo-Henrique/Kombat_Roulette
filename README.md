@@ -19,25 +19,12 @@ The project was built using HTML, CSS and JavaScript, with a dark interface and 
 - **Language Selection:** Switch between English and Portuguese.
 - **Fullscreen Mode:** A dedicated layout for screen recording and presentations.
 
-## 🎨 Themes
-
-Kombat Roulette currently includes six color themes:
-
-- 🔴 Red
-- 🟠 Orange
-- 🟢 Green
-- 🔵 Light Blue
-- 🟣 Purple
-- 🟡 Yellow
-
 ## 🚀 How to Use
 
-1. Download or clone this repository.
-2. Open the `index.html` file in your browser.
-3. Add fighters by typing or pasting their names, one per line.
-4. Alternatively, import a `.txt` file containing your fighter list.
-5. Select the draw mode: one fighter or two fighters.
-6. Click **DRAW** and let the roulette choose!
+1. Add fighters by typing or pasting their names, one per line.
+2. Alternatively, import a `.txt` file containing your fighter list.
+3. Select the draw mode: one fighter or two fighters.
+4. Click **DRAW** and let the roulette choose!
 
 You can also enable or disable repeated fighters, change the theme and switch languages whenever you want.
 
@@ -59,11 +46,8 @@ Kombat_Roulette/
             └── usa.png
 ```
 
-No installation or external dependencies required. Just open the HTML file and start using it!
+No installation or external dependencies required. Just open the link start using it!
 
-## 📺 Credits
-
-Created by **3DITZ-777**.
+Created for **3DITZ-777**.
 
 - YouTube: https://www.youtube.com/@3DITZ_777
-- GitHub: https://github.com/Git-Eduardo-Henrique/Kombat_Roulette
